@@ -61,12 +61,8 @@ func getDnsRecord(domain schema.ConfigDomain, zoneId string) (*schema.Cloudflare
 		return nil, errors.New("failed parsing the dns records body")
 	}
 
-	var subdomainName = domain.Subdomain + "." + domain.Domain
 	for _, item := range zones.Result {
-		if domain.Subdomain == "" && item.Name == domain.Domain {
-			return item, nil
-		}
-		if subdomainName == item.Name {
+		if item.Name == domain.GetFullDomain() {
 			return item, nil
 		}
 	}
