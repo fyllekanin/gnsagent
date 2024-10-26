@@ -1,6 +1,6 @@
-# gnsagrent
+# gnsagent
 
-**gnsagrent** is a lightweight, continuously running service designed to keep DNS records updated with the current public IPv4 address of the client it operates on. Ideal for users with dynamic IP addresses on their home networks, **gnsagrent** ensures that DNS records are always accurate, providing reliable access to networked resources even when IPs change.
+**gnsagent** is a lightweight, continuously running service designed to keep DNS records updated with the current public IPv4 address of the client it operates on. Ideal for users with dynamic IP addresses on their home networks, **gnsagent** ensures that DNS records are always accurate, providing reliable access to networked resources even when IPs change.
 
 
 ## Features
@@ -11,7 +11,7 @@
 
 ## Configuration
 
-The configuration for **gnsagrent** is managed via a `config.json` file, which contains two main sections: `endPoints` and `domains`.
+The configuration for **gnsagent** is managed via a `config.json` file, which contains two main sections: `endPoints` and `domains`.
 
 ### Example `config.json`
 
@@ -55,16 +55,16 @@ The configuration for **gnsagrent** is managed via a `config.json` file, which c
 
 ## Usage
 
-To run **gnsagrent** in a Docker container, follow these steps:
+To run **gnsagent** in a Docker container, follow these steps:
 
 1. **Build the Docker image**:
     ```bash
-    docker build -t gnsagrent-image .
+    docker build -t gnsagent-image .
     ```
 
 2. **Run the Docker container**, mounting your `config.json` file:
     ```bash
-    docker run -d --name gnsagrent-container -v /path/to/your/config.json:/app/config.json gnsagrent-image
+    docker run -d --name gnsagent-container -v /path/to/your/config.json:/app/config.json gnsagent-image
     ```
 
 Replace `/path/to/your/config.json` with the actual path to your configuration file.
@@ -79,4 +79,4 @@ This project is licensed under the MIT License.
 
 --- 
 
-This README gives an overview of **gnsagrent**, including usage instructions and an example configuration, which you can customize to suit your own setup.
+This README gives an overview of **gnsagent**, including usage instructions and an example configuration, which you can customize to suit your own setup.

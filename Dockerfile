@@ -5,12 +5,12 @@ WORKDIR /app
 COPY . /app
 RUN go mod download && go mod verify
 
-RUN go build -o gnsagrent ./cmd/
+RUN go build -o gnsagent ./cmd/
 
 FROM alpine:latest
 
 WORKDIR /app
 
-COPY --from=builder /app/gnsagrent /app/gnsagrent
+COPY --from=builder /app/gnsagent /app/gnsagent
 
-CMD ["/app/gnsagrent"]
+CMD ["/app/gnsagent"]
