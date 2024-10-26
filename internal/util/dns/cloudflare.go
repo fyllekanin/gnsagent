@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/fyllekanin/gnsagent/internal/logger"
 	"github.com/fyllekanin/gnsagent/internal/schema"
 )
 
@@ -22,7 +23,7 @@ func UpdateCloudflareRecord(ip string, domain schema.ConfigDomain) error {
 		return errors.New("failed getting dns record id for domain: " + domain.Domain)
 	}
 	if dnsRecord.Content == ip {
-		fmt.Printf("Ip for domain %s is already updated correctly", domain.Domain)
+		logger.Info(fmt.Sprintf("ip for domain %s is already updated correctly", domain.Domain))
 	}
 
 	err = updateDnsRecord(domain, zoneId, dnsRecord.Id, ip)

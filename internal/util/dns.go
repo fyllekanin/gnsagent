@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/fyllekanin/gnsagent/internal/logger"
 	"github.com/fyllekanin/gnsagent/internal/schema"
 	"github.com/fyllekanin/gnsagent/internal/util/dns"
 )
@@ -11,9 +12,12 @@ import (
 func UpdateDnsService(ip string, domain schema.ConfigDomain) error {
 	switch domain.Type {
 	case "CLOUDFLARE":
-		dns.UpdateCloudflareRecord(ip, domain)
+		err := dns.UpdateCloudflareRecord(ip, domain)
+		if err != nil {
+			logger.Error(fmt.Sprintf("failed updating dns record: %s", err.Error()))
+		}
 	default:
-		fmt.Printf("Error: %s domain type is not supported", domain.Type)
+		logger.Error(fmt.Sprintf("%s domain type is not supported", domain.Type))
 		return errors.New("unsupported domain type")
 	}
 	return nil
