@@ -24,6 +24,7 @@ func runTask(config schema.ConfigSchema) {
 }
 
 func main() {
+	logger.Info("starting...")
 	configFile, err := os.ReadFile("./config.json")
 	if err != nil {
 		logger.Fatal("config.json file could not be located")
@@ -37,8 +38,10 @@ func main() {
 		return
 	}
 
+	logger.Info("running initial scan")
 	runTask(config)
 	gocron.Every(5).Minutes().Do(runTask, config)
 
+	logger.Info("schedule started, scans will run every 5 minute")
 	<-gocron.Start()
 }
